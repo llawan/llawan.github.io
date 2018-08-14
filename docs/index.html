@@ -5,8 +5,22 @@
   <meta name="description" content="计算弧长，建材专用工具。由锦源拉弯厂提供。">
   <meta name="keywords" content="弧长计算,拉弯,建材">
   <meta name="author" content="uucky">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.5">
   <title>圆弧计算器 - 锦源拉弯厂 136638378178</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      font
+    }
+    
+    input {
+      padding-right: 5%; 
+    }
+    
+    .button {
+      text-align: right;
+    }
+  </style>
   <script defer>
 
   var r, c, a = 0;
@@ -85,37 +99,40 @@
   <h1>圆弧计算器</h1>
   <h2></h2>
   <p>制作：锦源拉弯厂 <a href="tel:136638378178">136638378178</a>
-  <fieldset>
-    <legend>弦长 拱高 - 半径 弧长</legend>
-    <label for="l">弦长</label>
-    <input type="number" name="l" id="l"><br />
-    <label for="h">拱高</label>
-    <input type="number" name="h" id="h"><br />
+  <div>
+    <fieldset>
+      <legend>弦长 拱高 - 半径 弧长</legend>
+      <label for="l">弦长</label>
+      <input type="number" name="l" id="l"><br />
+      <label for="h">拱高</label>
+      <input type="number" name="h" id="h"><br />
+      <div class="button">
+        <button type="button" name="calc1" id="calc1" onclick="calc1()"> 计算 </button>
+        <button type="reset" name="reset1" id="reset1" onclick="reset1()"> 归零 </button>
+      </div>
+      <br />
 
-    <button type="button" name="calc1" id="calc1" onclick="calc1()"> 计算 </button>
-    <button type="reset" name="reset1" id="reset1" onclick="reset1()"> 归零 </button>
+      半径<span id="calculatedR1"></span><br />
+      弧长<span id="calculatedC1"></span>
+    </fieldset>
 
-    <br />
+    <fieldset>
+      <legend>弧长 拱高 - 半径 弦长（开发中…）</legend>
+      <label for="l">弧长</label>
+      <input type="number" name="c" id="c"><br />
+      <label for="h">拱高</label>
+      <input type="number" name="h" id="h"><br />
+      <div class="button">
+        <button type="button" name="calc2" id="calc2" onclick="calc2()"> 计算 </button>
+        <button type="reset" name="reset2" id="reset2" onclick="reset2()"> 归零 </button>
+      </div>
 
-    半径<span id="calculatedR1"></span><br />
-    弧长<span id="calculatedC1"></span>
-  </fieldset>
+      <br />
 
-  <fieldset>
-    <legend>弧长 拱高 - 半径 弦长（开发中…）</legend>
-    <label for="l">弧长</label>
-    <input type="number" name="c" id="c"><br />
-    <label for="h">拱高</label>
-    <input type="number" name="h" id="h"><br />
-
-    <button type="button" name="calc2" id="calc2" onclick="calc2()"> 计算 </button>
-    <button type="reset" name="reset2" id="reset2" onclick="reset2()"> 归零 </button>
-
-    <br />
-
-    半径<span id="calculatedR2"></span><br />
-    弦长<span id="calculatedL2"></span>
-  </fieldset>
+      半径：<span id="calculatedR2"></span><br />
+      弦长：<span id="calculatedL2"></span>
+    </fieldset>
+  </div>
 
 Ver. 0.1.2
 </body>
