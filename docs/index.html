@@ -1,123 +1,151 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="计算弧长，建材专用工具。由锦源拉弯厂提供。">
   <meta name="keywords" content="弧长计算,拉弯,建材">
   <meta name="author" content="uucky">
-  <meta name="viewport" content="width=device-width, initial-scale=1.5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>圆弧计算器 - 锦源拉弯厂 136638378178</title>
   <style>
     body {
       font-family: sans-serif;
-      font
+      background: #FAFAFA;
+      margin: 0 10px;
     }
-    
+
     input {
-      padding-right: 5%; 
+      border: 0;
+      box-shadow: 0 2px #E91E63;
     }
-    
+
+    label {
+      padding-right: 0.5em;
+    }
+
+    label,
+    input {
+      line-height: 2em;
+    }
+
     .button {
-      text-align: right;
+      padding-left: 4.1em;
+    }
+
+    button {
+      font-size: 1.5rem;
+      overflow: hidden;
+    }
+
+    .form {
+      display: inline-block;
+    }
+
+    .fieldset {
+      font-size: 1.5rem;
     }
   </style>
   <script defer>
+    var r, c, a = 0;
+    //圆心角a
+    //弦长l 拱高h - 半径r 弧长c
+    function calcR1(h, l) {
+      r = h / 2 + l * l / (8 * h);
+      return r;
+    }
 
-  var r, c, a = 0;
+    function calcC1(l) {
+      console.log("a start = " + a);
+      console.log("l start = " + l);
+      console.log("r start = " + r);
 
-//圆心角a
-//弦长l 拱高h - 半径r 弧长c
-  function calcR1(h, l) {
-    r = h / 2 + l * l / ( 8 * h);
-    return r;
-  }
+      a = 2 * (Math.asin(l / (2 * r)));
+      console.log("a = " + a);
 
-  function calcC1(l){
-    console.log("a start = " + a);
-    console.log("l start = " + l);
-    console.log("r start = " + r);
+      c = r * a;
+      return c;
+    }
 
-    a = 2 * (Math.asin( l / (2 * r)));
-    console.log("a = " + a);
+    function calc1() {
+      console.log("click1")
+      const l = document.querySelector("#l").value || 0;
+      const h = document.querySelector("#h").value || 0;
+      document.querySelector("#calculatedR1").innerHTML = calcR1(h, l).toFixed(3);
+      document.querySelector("#calculatedC1").innerHTML = calcC1(l).toFixed(3);
+    }
 
-    c = r * a;
-    return c;
-  }
+    // 弧长c 拱高h - 半径r 弦长l
+    function calcR2(h, c) {
+      halfC = c / 2;
+      r = (halfC * halfC / h + h) / 2;
+      return r;
+    }
 
-  function calc1(){
-    console.log("click1")
-    const l = document.querySelector("#l").value || 0;
-    const h = document.querySelector("#h").value || 0;
-    document.querySelector("#calculatedR1").innerHTML = calcR1(h, l).toFixed(3);
-    document.querySelector("#calculatedC1").innerHTML = calcC1(l).toFixed(3);
-  }
+    function calcL2(h, c) {
+      a = 0;
+      return l;
+    }
 
-// 弧长c 拱高h - 半径r 弦长l
-  function calcR2(h, c) {
-    halfC = c / 2;
-    r = (halfC * halfC/ h + h)/2;
-    return r;
-  }
+    function calc2() {
+      console.log("click2")
+      const l = document.querySelector("#c").value || 0;
+      const h = document.querySelector("#h").value || 0;
+      document.querySelector("#calculatedR2").innerHTML = calcR2(h, l).toFixed(3);
+      document.querySelector("#calculatedL2").innerHTML = calcC1(l).toFixed(3);
+    }
 
-  function calcL2(h, c) {
-    a = 0;
-    return l;
-  }
+    function reset1() {
+      console.log("reset1");
+      document.querySelector("#l").value = "";
+      document.querySelector("#h").value = "";
+      document.querySelector("#calculatedR1").innerHTML = "";
+      document.querySelector("#calculatedC1").innerHTML = "";
+    }
 
-  function calc2(){
-    console.log("click2")
-    const l = document.querySelector("#c").value || 0;
-    const h = document.querySelector("#h").value || 0;
-    document.querySelector("#calculatedR2").innerHTML = calcR2(h, l).toFixed(3);
-    document.querySelector("#calculatedL2").innerHTML = calcC1(l).toFixed(3);
-  }
+    function copy() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      document.execCommand("copy");
+      alert("Copied the text: " + copyText.value);
+    }
 
-  function reset1() {
-    console.log("reset1");
-    document.querySelector("#l").value = "";
-    document.querySelector("#h").value = "";
-    document.querySelector("#calculatedR1").innerHTML = "";
-    document.querySelector("#calculatedC1").innerHTML = "";
-  }
-
-  function copy() {
-    var copyText = document.getElementById("myInput");
-    copyText.select();
-    document.execCommand("copy");
-    alert("Copied the text: " + copyText.value);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector('#calc1').addEventListener('click', calc1);
-    document.querySelector('#calc2').addEventListener('click', calc2);
-    document.querySelector('#reset1').addEventListener('reset', reset1);
-    document.querySelector('#reset2').addEventListener('reset', reset2);
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector('#calc1').addEventListener('click', calc1);
+      document.querySelector('#calc2').addEventListener('click', calc2);
+      document.querySelector('#reset1').addEventListener('reset', reset1);
+      document.querySelector('#reset2').addEventListener('reset', reset2);
+    });
   </script>
 </head>
+
 <body>
   <h1>圆弧计算器</h1>
   <h2></h2>
   <p>制作：锦源拉弯厂 <a href="tel:136638378178">136638378178</a>
-  <div>
-    <fieldset>
-      <legend>弦长 拱高 - 半径 弧长</legend>
-      <label for="l">弦长</label>
-      <input type="number" name="l" id="l"><br />
-      <label for="h">拱高</label>
-      <input type="number" name="h" id="h"><br />
-      <div class="button">
-        <button type="button" name="calc1" id="calc1" onclick="calc1()"> 计算 </button>
-        <button type="reset" name="reset1" id="reset1" onclick="reset1()"> 归零 </button>
-      </div>
-      <br />
+    <div class="fieldset">
+      <fieldset>
+        <legend>-</legend>
+        <div class="from">
+          <label for="l">弦长</label>
+          <input type="number" name="l" id="l"><br />
+        </div>
+        <div class="form">
+          <label for="h">拱高</label>
+          <input type="number" name="h" id="h"><br />
+        </div>
+        <div class="button">
+          <button type="button" name="calc1" id="calc1" onclick="calc1()"> 计算 </button>
+          <button type="reset" name="reset1" id="reset1" onclick="reset1()"> 归零 </button>
+        </div>
+        <br />
 
-      半径<span id="calculatedR1"></span><br />
-      弧长<span id="calculatedC1"></span>
-    </fieldset>
+        <label for="calculatedR1">半径</label><span id="calculatedR1"></span><br />
+        <label for="calculatedC1">弧长</label><span id="calculatedC1"></span>
+      </fieldset>
 
-    <fieldset>
-      <legend>弧长 拱高 - 半径 弦长（开发中…）</legend>
+      <!-- <fieldset>
+      <legend>弧长 拱高 - 半径 弦长（开发中）</legend>
       <label for="l">弧长</label>
       <input type="number" name="c" id="c"><br />
       <label for="h">拱高</label>
@@ -131,9 +159,10 @@
 
       半径：<span id="calculatedR2"></span><br />
       弦长：<span id="calculatedL2"></span>
-    </fieldset>
-  </div>
+    </fieldset> -->
+    </div>
 
-Ver. 0.1.2
+    Ver. 0.1.5
 </body>
+
 </html>
